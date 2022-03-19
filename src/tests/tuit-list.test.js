@@ -7,9 +7,9 @@ import axios from "axios";
 
 
 const MOCKED_USERS = [
-  {username: 'alice', password: 'lv426', email: 'alice@hogwarts.com', _id: '111'},
-  {username: 'bob', password: 'lv426', email: 'bob@hogwarts.com', _id: '112'},
-  {username: 'charlie', password: 'lv426', email: 'charlie@hogwarts.com', _id: '113'}
+  {username: 'alice', password: 'alice', email: 'alice@wonderland.com', _id: '123'},
+  {username: 'bob', password: 'bob', email: 'bob@bob.com', _id: '246'},
+  {username: 'charlie', password: 'charlie', email: 'charlie@charlie.com', _id: '489'}
 ];
 
 const MOCKED_TUITS = [
