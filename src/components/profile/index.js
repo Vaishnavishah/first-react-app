@@ -98,5 +98,5 @@ const Profile = () => {
         </Routes>
     </div>
   );
-}
+};
 export default Profile;
