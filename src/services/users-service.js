@@ -2,12 +2,13 @@ import axios from "axios";
 //const BASE_URL = "https://cs5500-01-sp22.herokuapp.com/api";
 //const BASE_URL = "https://tuiter-software-engineerng-a3.herokuapp.com";
 
-//const LOGIN_API = `${BASE_URL}/login`;
+
 //const USERS_API = `${BASE_URL}/users`;
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 const USERS_API = `${BASE_URL}/users`;
 const TUITS_API = `${BASE_URL}/tuits`;
+const LOGIN_API = `${BASE_URL}/login`;
 
 
 export const createUser = (user) =>

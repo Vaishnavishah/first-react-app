@@ -1,10 +1,12 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import TuitStats from "./tuit-stats";
 import TuitImage from "./tuit-image";
 import TuitVideo from "./tuit-video";
 import {useNavigate, Link} from "react-router-dom";
+import * as service from "../../services/users-service";
+//import {findUserById} from "../../services/users-service";
 
-const Tuit = ({tuit, deleteTuit, likeTuit}) => {
+const Tuit = ({tuit, deleteTuit, likeTuit, dislikeTuit}) => {
     const navigate = useNavigate();
     const daysOld = (tuit) => {
         const now = new Date();
@@ -28,13 +30,20 @@ const Tuit = ({tuit, deleteTuit, likeTuit}) => {
         }
         return old;
     }
+    //console.log("username: "+ tuit.postedBy);
+    //const user = findUserById(tuit.postedBy);
+    const [user, setUser] = useState({});
+    const findUserById = () =>
+        service.findUserById(tuit.postedBy).then(user => setUser(user) );
+    useEffect(findUserById, []);
+    //console.log(user);
   return(
     // <li onClick={() => navigate(`/tuit/${tuit._id}`)}
     <li className="p-2 ttr-tuit list-group-item d-flex rounded-0">
       <div className="pe-2">
         {
           tuit.postedBy &&
-          <img src={`../images/${tuit.postedBy.username}.jpg`}
+          <img src={`../images/${user.username}.jpg`}
                className="ttr-tuit-avatar-logo rounded-circle"/>
         }
       </div>
@@ -45,8 +54,8 @@ const Tuit = ({tuit, deleteTuit, likeTuit}) => {
           </Link>
         <h2
           className="fs-5">
-          {tuit.postedBy && tuit.postedBy.username}
-          @{tuit.postedBy && tuit.postedBy.username} -
+          {user && user.username}
+          @{user && user.username} -
             <span className="ms-1">{daysOld(tuit)}</span></h2>
         {tuit.tuit}
         {
@@ -57,7 +66,8 @@ const Tuit = ({tuit, deleteTuit, likeTuit}) => {
           tuit.image &&
           <TuitImage tuit={tuit}/>
         }
-        <TuitStats tuit={tuit} likeTuit={likeTuit}/>
+
+          <TuitStats tuit={tuit} likeTuit={likeTuit} dislikeTuit ={dislikeTuit}/>
       </div>
     </li>
   );

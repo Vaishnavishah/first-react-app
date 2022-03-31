@@ -9,6 +9,16 @@ const Tuits = ({tuits = [], refreshTuits}) => {
             .then(refreshTuits)
             .catch(e => alert(e))
 
+    const unlikeTuit = (tuit) =>
+        likesService.userTogglesTuitUnlikes("my", tuit._id)
+            .then(refreshTuits)
+            .catch(e => alert(e))
+
+    const dislikeTuit = (tuit) =>
+        likesService.userTogglesTuitDislikes("my", tuit._id)
+            .then(refreshTuits)
+            .catch(e => alert(e))
+
     const deleteTuit = (tid) =>
         service.deleteTuit(tid)
             .then(refreshTuits);
@@ -21,6 +31,8 @@ const Tuits = ({tuits = [], refreshTuits}) => {
                   <Tuit key={tuit._id}
                         deleteTuit={deleteTuit}
                         likeTuit={likeTuit}
+                        dislikeTuit = {dislikeTuit}
+                        //unlikeTuit={unlikeTuit}
                         tuit={tuit}/>)
             }
           </ul>
