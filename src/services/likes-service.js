@@ -1,8 +1,5 @@
 import axios from "axios";
 
-
-
-
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 const USERS_API = `${BASE_URL}/users`;
 const TUITS_API = `${BASE_URL}/tuits`;
